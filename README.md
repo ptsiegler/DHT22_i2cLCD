@@ -16,5 +16,6 @@ for example mine is "g++ example.cpp -lwiringPi -o example.out" and I run "./exa
 
 Credit to monotok for original LCD/i2c driver
 https://github.com/monotok/RaspLCDDriver
+
 Credit to danichoi for original dht22 driver
 https://github.com/danichoi737/DHT22
