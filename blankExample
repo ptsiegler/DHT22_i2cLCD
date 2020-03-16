@@ -1,0 +1,31 @@
+#include "include.hpp"
+#include "DHT22_Driver.cpp"
+#include "i2cControl.cpp"
+#include "lcdDriver.cpp"
+#define lcdAdd 0x27 //put your lcd i2c address here
+
+int main(int argc, char *argv[])
+{
+    I2cControl *i2c = new I2cControl(1);
+    LcdDriver lcd(lcdAdd, i2c);
+    time_t now;
+    struct tm ts;
+    char temp[20];
+    char *out = &temp[0];
+
+    //initial LCD prints for static text
+    lcd.setDisplayOnCursorOff();
+    lcd.lcdSendCommand(LCD_BEG_LINE_1);
+    
+    while(true){
+        time( &now );
+        ts = *localtime(&now);
+
+        strftime(temp, 20, "%H:%M:%S",&ts);
+        lcd.setCursorPositionRowCol(1,0);
+        lcd.lcdString(out);
+        std::this_thread::sleep_for(std::chrono::milliseconds(50)); //50ms delay
+        delay(50);
+
+    return(0);
+}
