@@ -1,11 +1,9 @@
 #include "include.hpp"
+static const unsigned short signal = 4; //BCM pin for data input of DHT22 
 
-//shifts temp in celsius
-#define TEMPSCALE 1
-#define TEMPSHIFT 0 
-
-
-static const unsigned short signal = 4;
+//Temperature calibration (if yours is miscalibrated for some reason)
+#define TEMPSCALE 1 //multiplies raw Celsius value
+#define TEMPSHIFT 0 //adds to scaled raw Celsius value
 
 unsigned short data[5] = {0, 0, 0, 0, 0};
 float humidity = 11.1, celsius=11.1, fahrenheit=11.1;
